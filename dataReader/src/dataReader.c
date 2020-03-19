@@ -1,39 +1,3 @@
-/*!
- *
- *	@file	:	dataReader.c
- *
- *	project	:	PROG1970 - Systems Programming - The Hoochamacallit System
- *
- *	@author	:	Brendan Rushing & Conor Macpherson
- *
- *	@date	:	2018-07-17
- *
- *	@brief	:	This file contains the main entry point for the dataReader application.
- *				The data reader will create shared memory and a message queue.
- *				
- *				It will then wait 15 seconds after which it will start reading messages
- *				from the message queue and storing the data from each message into the
- *				shared memory.
- *
- *				When a new message is received, the dataReader will check it for the state
- *				of the data creator.
- *				If the creator is offline, it will remove the data creator from the shared
- *				memory.
- *
- *				The dataReader will also check if it hasn't heard from a data creator in the
- *				past 35 seconds. If it hasn't it removes it from the master list.
- *
- *				If a message from a previously unkown data creator is received, the creator is
- *				added to the master list
- *
- *				The dataReader will wait 1.5 after each message before it reads another.
- *				If no messages are received for 35 seconds, then the dataReader will
- *				detach from, and deallocate the shared memory.
- *				Then, it will deallocate the message queue.
- *
- */
-
-
 #include "../../common/inc/common.h"
 #include "../inc/messageQueue.h"
 #include "../inc/sharedMemory.h"
